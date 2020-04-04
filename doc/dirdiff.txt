@@ -131,6 +131,10 @@ Ignore FileName case during diff: >
 
     let g:DirDiffIgnoreFileNameCase = 0
 
+Sliently exit: >
+
+    let g:DirDiffSilentExit = 0
+
 Sets default exclude pattern: >
 
     let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp"

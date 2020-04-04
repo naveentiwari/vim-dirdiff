@@ -87,6 +87,10 @@ if !exists("g:DirDiffIgnoreFileNameCase")
     let g:DirDiffIgnoreFileNameCase = 0
 endif
 
+if !exists("g:DirDiffSilentExit")
+    let g:DirDiffSilentExit = 0
+endif
+
 " Force set the LANG variable before running the C command.  Default to C.
 " Set to "" to not set the variable.
 if !exists("g:DirDiffForceLang")
@@ -340,7 +344,11 @@ endfun
 
 " Quit the DirDiff mode
 function! <SID>DirDiffQuit()
-    let in = confirm ("Are you sure you want to quit DirDiff?", "&Yes\n&No", 2)
+    if (g:DirDiffSilentExit)
+        let in = 1
+    else
+        let in = confirm ("Are you sure you want to quit DirDiff?", "&Yes\n&No", 2)
+    endif
     if (in == 1)
         call <SID>SaveDiffWindowsIfModified()
         bd!
